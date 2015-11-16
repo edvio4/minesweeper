@@ -31,7 +31,7 @@ class Minefield
   # it should also clear any adjacent cells as well. This is the action
   # when the player clicks on the cell.
   def clear(row, col)
-    if !cell_cleared?(row,col)
+    unless cell_cleared?(row,col)
       @grid[row][col].uncovered = true
       if adjacent_mines(row,col) == 0
         clear(row, col+1) if col < @column_count-1
