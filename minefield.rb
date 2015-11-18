@@ -51,7 +51,7 @@ class Minefield
   def any_mines_detonated?
     flag = false
     @grid.each do |row|
-      row.each { |cell| flag = true if cell.uncovered == true && !cell.fill.nil? }
+      flag = true if row.any? { |cell | cell.uncovered == true && !cell.fill.nil? }
     end
     flag
   end
@@ -61,7 +61,7 @@ class Minefield
   def all_cells_cleared?
     flag = true
     @grid.each do |row|
-      row.each { |cell| flag = false if cell.uncovered == false && cell.fill.nil? }
+      flag = false if row.any? { |cell| cell.uncovered == false && cell.fill.nil? }
     end
     flag
   end
